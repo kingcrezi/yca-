@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {%- capture seo_title -%}
+    {%- if page.seo_title -%}
+      {{ page.seo_title }}
+    {%- elsif page.url == "/" -%}
+      {{ site.title }} - {{ site.tagline }}
+    {%- else -%}
+      {{ page.title }} - {{ site.title }}
+    {%- endif -%}
+  {%- endcapture -%}
+  {%- assign meta_desc = page.description | default: site.description -%}
+  {%- assign canonical_url = page.url | replace: 'index.html', '' | absolute_url -%}
+
+  <title>{{ seo_title | strip }}</title>
+  <meta name="description" content="{{ meta_desc | strip_html | strip_newlines | escape }}">
+  <meta name="robots" content="{{ page.robots | default: 'index, follow' }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  <!-- Open Graph -->
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ seo_title | strip }}">
+  <meta property="og:description" content="{{ meta_desc | strip_html | strip_newlines | escape }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:image" content="{{ '/assets/img/YCA_120x90.png' | absolute_url }}">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo_title | strip }}">
+  <meta name="twitter:description" content="{{ meta_desc | strip_html | strip_newlines | escape }}">
+  <meta name="twitter:image" content="{{ '/assets/img/YCA_120x90.png' | absolute_url }}">
+
+  <!-- Favicon -->
+  <link rel="icon" href="{{ '/assets/img/cropped-YCA_90x68.png' | relative_url }}" type="image/png">
+  <link rel="apple-touch-icon" href="{{ '/assets/img/YCA_120x90.png' | relative_url }}">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body class="{{ page.body_class }}">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <div class="site-container">
+    <header class="site-header">
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+        aria-label="Open menu">
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+      </button>
+
+      <a href="{{ '/' | relative_url }}" class="site-logo" aria-label="YCALEX Home">
+        <img
+          src="{{ '/assets/img/YCA_90x68-1.png' | relative_url }}"
+          alt="YCALEX logo"
+          width="90"
+          height="68">
+      </a>
+
+      <nav class="site-nav" id="primary-navigation" aria-label="Primary navigation">
+        <div class="mobile-nav-header">
+          <button
+            type="button"
+            class="menu-close"
+            id="menu-close"
+            aria-label="Close menu">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <a href="{{ '/' | relative_url }}" class="mobile-nav-logo" aria-label="YCALEX Home">
+            <img
+              src="{{ '/assets/img/YCA_90x68-1.png' | relative_url }}"
+              alt="YCALEX logo"
+              width="90"
+              height="68">
+          </a>
+        </div>
+
+        <ul class="nav-list">
+          <li><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a></li>
+          <li><a href="{{ '/about-us/' | relative_url }}"{% if page.url == '/about-us/' %} aria-current="page"{% endif %}>About Us</a></li>
+          <li><a href="{{ '/blog/' | relative_url }}"{% if page.url == '/blog/' or page.layout == 'post' %} aria-current="page"{% endif %}>Blog</a></li>
+          <li><a href="{{ '/contact-us/' | relative_url }}"{% if page.url == '/contact-us/' %} aria-current="page"{% endif %}>Contact Us</a></li>
+          <li><a href="{{ '/privacy-policy/' | relative_url }}"{% if page.url == '/privacy-policy/' %} aria-current="page"{% endif %}>Privacy Policy</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="site-main-column">
+      <main id="main-content" class="site-main" tabindex="-1">
+        {{ content }}
+      </main>
+
+      <footer class="site-footer">
+        <p class="footer-copy">
+          &copy; <span id="current-year">2026</span>
+          <a href="{{ '/' | relative_url }}">YCALEX</a>
+        </p>
+        <p class="footer-credit">Powered by YA</p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+</body>
+</html>

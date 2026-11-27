@@ -1,0 +1,23 @@
+---
+layout: default
+title: "Blog"
+description: "In this section you will find some articles about the legal world: news, insights, clarifications, reflections, among others."
+---
+<section class="page-content">
+  <h1 class="page-title">Blog</h1>
+  <p class="blog-intro">In this section you will find some articles about the legal world: news, insights, clarifications, reflections, among others.</p>
+
+  <ul class="post-list">
+    {% for post in site.posts %}
+    <li class="post-item">
+      <h2 class="post-item-title">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h2>
+      <p class="post-excerpt">
+        {{ post.excerpt | strip_html | strip }}
+        <a href="{{ post.url | relative_url }}" class="read-more">Read more</a>
+      </p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

@@ -1,0 +1,52 @@
+---
+layout: default
+seo_title: "YCALEX - Outside of the box"
+description: "Outside of the box"
+---
+<style>
+  /* Entrance animation styles (Option 1) */
+  .home-hero {
+    opacity: 0;
+    animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .home-title {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  }
+
+  .btn-pill {
+    opacity: 0;
+    transform: translateY(15px);
+    display: inline-block;
+    animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+  }
+
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Accessibility: respects user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .home-hero,
+    .home-title,
+    .btn-pill {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+  }
+</style>
+
+<section class="home-hero">
+  <h1 class="home-title">Our consultancy is always from outside of the box.</h1>
+  <a href="{{ '/contact-us/' | relative_url }}" class="btn-pill">Get In Touch</a>
+</section>

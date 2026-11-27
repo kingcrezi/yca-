@@ -1,0 +1,12 @@
+title: "YCALEX"
+tagline: "Outside of the box"
+description: "Outside of the box"
+url: "https://ycalex.com"
+baseurl: ""
+lang: "en-US"
+
+# Genera URL puliti senza data per gli articoli del blog (es. /data-protection-public-interest/)
+permalink: /:title/
+
+# Impostazioni standard compatibili con GitHub Pages
+markdown: kramdown
